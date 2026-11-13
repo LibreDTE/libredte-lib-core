@@ -33,6 +33,34 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Exception\Integratio
 interface SiiRequestInterface extends OptionsAwareInterface
 {
     /**
+     * Cantidad de intentos: valor por defecto y rango permitido.
+     */
+    public const RETRIES_DEFAULT = 3;
+
+    public const RETRIES_MIN = 1;
+
+    public const RETRIES_MAX = 10;
+
+    /**
+     * Segundos máximos de cada intento: valor por defecto y rango permitido.
+     */
+    public const TIMEOUT_DEFAULT = 20;
+
+    public const TIMEOUT_MIN = 10;
+
+    public const TIMEOUT_MAX = 60;
+
+    /**
+     * Segundos máximos de toda la operación: valor por defecto y rango
+     * permitido.
+     */
+    public const MAX_DURATION_DEFAULT = 60;
+
+    public const MAX_DURATION_MIN = 10;
+
+    public const MAX_DURATION_MAX = 300;
+
+    /**
      * Entrega el ambiente que está configurado para realizar las conexiones al
      * Servicio de Impuestos Internos.
      *
@@ -45,9 +73,27 @@ interface SiiRequestInterface extends OptionsAwareInterface
      * consulta a un servicio web del SII.
      *
      * @param int|null $retries
-     * @return int
+     * @return int Cantidad de intentos, de 1 a 10.
      */
     public function getRetries(?int $retries = null): int;
+
+    /**
+     * Entrega el tiempo máximo, en segundos, que puede tardar cada intento de
+     * una llamada al SII.
+     *
+     * @return int Segundos por intento, de 10 a 60.
+     */
+    public function getTimeout(): int;
+
+    /**
+     * Entrega el tiempo máximo total, en segundos, que puede tardar una
+     * llamada al SII, considerando todos sus intentos y las pausas entre
+     * ellos. Una operación que hace varias llamadas tiene este tiempo por
+     * cada una de ellas.
+     *
+     * @return int Segundos totales, de 10 a 300.
+     */
+    public function getMaxDuration(): int;
 
     /**
      * Indica si se está o no verificando el SSL en las conexiones al SII.

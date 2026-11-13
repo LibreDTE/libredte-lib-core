@@ -34,6 +34,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestI
 use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job\SendXmlDocumentJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDteWorker;
@@ -43,12 +44,14 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazyWorker
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(IntegrationComponent::class)]
 #[CoversClass(SiiRequest::class)]
+#[UsesClass(SiiAttempts::class)]
 #[CoversClass(SiiDteWorker::class)]
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]

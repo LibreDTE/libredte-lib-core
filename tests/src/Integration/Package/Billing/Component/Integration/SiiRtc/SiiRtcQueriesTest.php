@@ -35,6 +35,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\CheckAecSentStatusResponse;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\GetAssignmentStatusResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob;
@@ -46,12 +47,14 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtcWorker;
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(Application::class)]
 #[CoversClass(PackageRegistry::class)]
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(IntegrationComponent::class)]
 #[CoversClass(SiiRequest::class)]
+#[UsesClass(SiiAttempts::class)]
 #[CoversClass(SiiLazyWorker::class)]
 #[CoversClass(AuthenticateJob::class)]
 #[CoversClass(ConsumeWebserviceJob::class)]

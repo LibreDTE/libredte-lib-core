@@ -32,6 +32,7 @@ use Derafu\Xml\Contract\XmlServiceInterface;
 use Derafu\Xml\XmlDocument;
 use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiLazy\ConsumeWebserviceException;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use SoapClient;
 use SoapFault;
 
@@ -81,21 +82,33 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         // Definir el WSDL que se debe utilizar.
         $wsdl = $this->getWsdlUri($request, $service);
 
-        // Resolver el valor de $retries.
-        $retries = $request->getRetries($retries);
+        // Resolver los intentos que se podrán realizar.
+        $attempts = SiiAttempts::fromRequest($request, $retries);
 
         // Definir las opciones para consumir el servicio web.
         $soapClientOptions = $this->createSoapClientOptions($request);
 
+        // Acotar el tiempo de espera de la red. Solo `default_socket_timeout`
+        // limita la espera de SoapClient: las opciones del stream context y
+        // `connection_timeout` no lo hacen. Se restaura al terminar. Con este
+        // valor se limita también la descarga del WSDL al crear el cliente SOAP,
+        // luego en cada intento se ajusta al tiempo que le corresponde.
+        $previousTimeout = (string) ini_get('default_socket_timeout');
+        ini_set('default_socket_timeout', (string) $request->getTimeout());
+
         // Realizar la llamada a la función en el servicio web del SII.
-        return $this->callServiceFunction(
-            $wsdl,
-            $function,
-            $args,
-            $soapClientOptions,
-            $retries,
-            $token
-        );
+        try {
+            return $this->callServiceFunction(
+                $wsdl,
+                $function,
+                $args,
+                $soapClientOptions,
+                $attempts,
+                $token
+            );
+        } finally {
+            ini_set('default_socket_timeout', $previousTimeout);
+        }
     }
 
     /**
@@ -143,7 +156,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
      * @param string $function Nombre de la función que se ejecutará,
      * @param array<array-key, mixed> $args Argumentos que se pasarán al servicio web.
      * @param array<string, mixed> $soapClientOptions Opciones del cliente SOAP.
-     * @param int $retries Intentos que se realizarán como máximo.
+     * @param SiiAttempts $attempts Intentos que se realizarán como máximo.
      * @param string|null $token Token de autenticación para establecer como
      * cookie TOKEN en el cliente SOAP.
      * @return XmlDocumentInterface Documento XML con la respuesta del servicio web.
@@ -154,7 +167,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
         string $function,
         array $args,
         array $soapClientOptions,
-        int $retries,
+        SiiAttempts $attempts,
         ?string $token = null
     ): XmlDocumentInterface {
         // Preparar cliente SOAP.
@@ -198,9 +211,10 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
 
         // Ejecutar la función que se ha solicitado del servicio web a través
         // del cliente SOAP preparado previamente.
-        // Se realizarán $retries intentos de consulta. O sea, si $retries > 0 se
-        // hará una consulta más $retries - 1 reintentos.
-        for ($i = 0; $i < $retries; $i++) {
+        // Se realizan los intentos que permitan $attempts, que además entrega el
+        // tiempo máximo de cada uno y hace la pausa entre ellos.
+        foreach ($attempts as $i => $timeout) {
+            ini_set('default_socket_timeout', (string) (int) ceil($timeout));
             try {
                 // Se realiza la llamada a la función en el servicio web.
                 $responseBody = $soap->__soapCall(
@@ -228,10 +242,6 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
                     $message
                 );
                 $responseBody = null;
-                // El reitento será con "exponential backoff", por lo que se
-                // hace una pausa de 0.5 * $retries segundos antes de volver a
-                // intentar llamar a la función del servicio web.
-                usleep(500000 * $retries);
             }
         }
 
@@ -241,7 +251,7 @@ class ConsumeWebserviceJob extends AbstractJob implements JobInterface
             throw new ConsumeWebserviceException([
                 'No response was received from SII SOAP function {function} after {attempts} attempts. {detail}',
                 'function' => $function,
-                'attempts' => $retries,
+                'attempts' => count($attempts),
                 'detail' => implode(' ', $errors),
             ]);
         }

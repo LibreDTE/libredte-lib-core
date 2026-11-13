@@ -60,6 +60,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Enum\SiiEnvironment;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
 use libredte\lib\Core\Package\Billing\Component\Integration\IntegrationComponent;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiRequest;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\AuthenticateJob;
 use libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiLazy\Job\ConsumeWebserviceJob;
@@ -83,6 +84,7 @@ use libredte\lib\Core\Package\Billing\Component\TradingParties\Service\FakeRecep
 use libredte\lib\Core\PackageRegistry;
 use libredte\lib\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Throwable;
 
 #[CoversClass(Application::class)]
@@ -90,6 +92,7 @@ use Throwable;
 #[CoversClass(BillingPackage::class)]
 #[CoversClass(IntegrationComponent::class)]
 #[CoversClass(SiiRequest::class)]
+#[UsesClass(SiiAttempts::class)]
 #[CoversClass(SiiRtcWorker::class)]
 #[CoversClass(SendAecJob::class)]
 #[CoversClass(SendAecException::class)]

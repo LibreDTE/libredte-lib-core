@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Support;
 
-use Derafu\Array\ArrayReader;
 use Derafu\Certificate\Contract\CertificateInterface;
 use Derafu\Config\Contract\OptionsInterface;
 use Derafu\Config\Trait\OptionsAwareTrait;
@@ -46,6 +45,8 @@ class SiiRequest implements SiiRequestInterface
      * @var array{
      *     environment: array<string, mixed>,
      *     retries: array<string, mixed>,
+     *     timeout: array<string, mixed>,
+     *     max_duration: array<string, mixed>,
      *     verify_ssl: array<string, mixed>,
      *     token: array<string, mixed>
      * }
@@ -67,7 +68,25 @@ class SiiRequest implements SiiRequestInterface
         // tiempo de ejecución alto.
         'retries' => [
             'types' => 'int',
-            'default' => 10,
+            'default' => self::RETRIES_DEFAULT,
+            'normalizer' => null, // Se asigna en el constructor como callback.
+        ],
+
+        // Tiempo máximo, en segundos, que puede tardar cada intento de una
+        // llamada al SII.
+        'timeout' => [
+            'types' => 'int',
+            'default' => self::TIMEOUT_DEFAULT,
+            'normalizer' => null, // Se asigna en el constructor como callback.
+        ],
+
+        // Tiempo máximo total, en segundos, de una llamada al SII, considerando
+        // todos sus intentos y las pausas entre ellos. Una operación que hace
+        // varias llamadas (por ejemplo, autenticar y luego consultar) tiene
+        // este tiempo por cada una de ellas.
+        'max_duration' => [
+            'types' => 'int',
+            'default' => self::MAX_DURATION_DEFAULT,
             'normalizer' => null, // Se asigna en el constructor como callback.
         ],
 
@@ -137,7 +156,13 @@ class SiiRequest implements SiiRequestInterface
 
         // Resolver opciones de la solicitud.
         $this->optionsSchema['retries']['normalizer'] =
-            fn (Options $options, int $value) => max(0, min(10, $value))
+            fn (Options $options, int $value) => max(self::RETRIES_MIN, min(self::RETRIES_MAX, $value))
+        ;
+        $this->optionsSchema['timeout']['normalizer'] =
+            fn (Options $options, int $value) => max(self::TIMEOUT_MIN, min(self::TIMEOUT_MAX, $value))
+        ;
+        $this->optionsSchema['max_duration']['normalizer'] =
+            fn (Options $options, int $value) => max(self::MAX_DURATION_MIN, min(self::MAX_DURATION_MAX, $value))
         ;
         if (isset($options['environment']) && is_numeric($options['environment'])) {
             $options['environment'] = SiiEnvironment::from((int) $options['environment']);
@@ -168,10 +193,23 @@ class SiiRequest implements SiiRequestInterface
     {
         $retriesInOptions = $this->options->getReader()->requireInt('retries');
 
-        return max(0, min(
-            $retries ?? $retriesInOptions,
-            ArrayReader::fromArray($this->optionsSchema)->requireInt('retries.default')
-        ));
+        return max(self::RETRIES_MIN, min(self::RETRIES_MAX, $retries ?? $retriesInOptions));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTimeout(): int
+    {
+        return $this->options->getReader()->requireInt('timeout');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMaxDuration(): int
+    {
+        return $this->options->getReader()->requireInt('max_duration');
     }
 
     /**

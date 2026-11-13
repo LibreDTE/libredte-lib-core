@@ -52,7 +52,9 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
         |---|---|
         | `certificate` | Obligatorio. Certificado digital con el que se autentica en el SII. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
         | `options.environment` | Ambiente del SII: `0` producción (valor por defecto) o `1` certificación (pruebas). |
-        | `options.retries` | Cantidad máxima de intentos ante fallas de conexión, de `0` a `10`; por defecto `10`. Con `0` no se hace ningún intento. Con muchos intentos la espera crece de forma exponencial. |
+        | `options.retries` | Cantidad máxima de intentos de cada llamada al SII, de `1` a `10`; por defecto `3`. Con muchos intentos la espera crece de forma exponencial. |
+        | `options.timeout` | Segundos máximos de cada intento de una llamada al SII, de `10` a `60`; por defecto `20`. |
+        | `options.max_duration` | Segundos máximos de una llamada al SII, sumando sus intentos y las pausas entre ellos, de `10` a `300`; por defecto `60`. La autenticación con el SII es una llamada aparte, con su propio tiempo. |
         | `options.verify_ssl` | Verifica el certificado SSL del SII; por defecto `true`. No se recomienda desactivarlo. |
         | `options.token` | Cómo se guarda el token de autenticación: `cache` (`memory` o `filesystem`; por defecto `memory`), `key` y `ttl` (segundos que se conserva; por defecto `2700`). |
         MD;

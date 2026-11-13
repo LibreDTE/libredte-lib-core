@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiDte\Job;
 
+use CurlHandle;
 use Derafu\Array\ArrayPath;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
@@ -38,6 +39,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestI
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDte\SendXmlDocumentException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiDteException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiDte\SendXmlDocumentResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use UnexpectedValueException;
 
 /**
@@ -109,11 +111,11 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             'archivo' => curl_file_create($filepath, $mimetype, $filename),
         ];
 
-        // Resolver el valor de $retries.
-        $retries = $request->getRetries($retries);
+        // Resolver los intentos que se podrán realizar.
+        $attempts = SiiAttempts::fromRequest($request, $retries);
 
         // Realizar la solicitud mediante POST al SII para subir el archivo.
-        $xmlResponse = $this->uploadXml($request, $data, $retries);
+        $xmlResponse = $this->uploadXml($request, $data, $attempts);
 
         // Eliminar el archivo temporal con el XML.
         unlink($filepath);
@@ -232,7 +234,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
      * @param SiiRequestInterface $request Datos de la solicitud al SII.
      * @param array<string, mixed> $data Arreglo con los datos del formulario del SII,
      * incluyendo el archivo XML que se subirá.
-     * @param int $retries
+     * @param SiiAttempts $attempts Intentos que se realizarán como máximo.
      * @return XmlDocumentInterface Respuesta del SII al enviar el XML.
      * @throws SiiDteException Si no se puede obtener el token para enviar
      * el XML al SII o si hubo un problema (error) al enviar el XML al SII.
@@ -240,7 +242,7 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
     private function uploadXml(
         SiiRequestInterface $request,
         array $data,
-        int $retries
+        SiiAttempts $attempts
     ): XmlDocumentInterface {
         // URL que se utilizará para subir el XML al SII.
         $url = $request->getEnvironment()->getUrl('/cgi_dte/UPL/DTEUpload');
@@ -269,27 +271,38 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         }
 
-        // Realizar el envío del XML al SII con $retries intentos.
+        // Realizar el envío del XML al SII con los intentos de $attempts, cada
+        // uno acotado al tiempo máximo que le corresponde.
         $responseBody = null;
-        for ($i = 0; $i < $retries; $i++) {
+        foreach ($attempts as $timeout) {
+            $milliseconds = (int) ceil($timeout * 1000);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, $milliseconds);
+            curl_setopt($curl, CURLOPT_TIMEOUT_MS, $milliseconds);
+
             // Realizar consulta al SII enviando el XML.
             $responseBody = curl_exec($curl);
 
-            // Si se logró obtener una respuesta, y no es un "Error 500",
-            // entonces se logró enviar el XML al SII y se rompe el ciclo para
-            // parar los reintentos.
-            if ($responseBody && $responseBody !== 'Error 500') {
+            // Si se logró obtener una respuesta, y no es un error del servidor
+            // del SII (HTTP 5xx o "Error 5xx"), entonces se logró enviar el XML
+            // al SII y se rompe el ciclo para parar los reintentos.
+            if ($responseBody && !$this->isServerError($curl, (string) $responseBody)) {
                 break;
             }
 
-            // El reitento será con "exponential backoff", por lo que se hace
-            // una pausa de 0.5 * $retries segundos antes de volver a intentar el
-            // envio del XML al SII.
-            usleep(500000 * $retries);
+            // Si el SII no respondió a tiempo cuando el envío ya se había
+            // hecho, pudo haberlo recibido. Reintentar podría enviarlo
+            // duplicado, por lo que no se reintenta.
+            if (
+                $responseBody === false
+                && curl_errno($curl) === CURLE_OPERATION_TIMEDOUT
+                && curl_getinfo($curl, CURLINFO_SIZE_UPLOAD_T) > 0
+            ) {
+                break;
+            }
         }
 
         // Validar si hubo un error en la respuesta.
-        if (!$responseBody || $responseBody === 'Error 500') {
+        if (!$responseBody || $this->isServerError($curl, (string) $responseBody)) {
             throw new SendXmlDocumentException([
                 'Failed to send the XML to the SII. {detail}',
                 'detail' => !$responseBody
@@ -302,6 +315,21 @@ class SendXmlDocumentJob extends AbstractJob implements JobInterface
         $xmlDocument = new XmlDocument();
         $xmlDocument->loadXml((string) $responseBody);
         return $xmlDocument;
+    }
+
+    /**
+     * Indica si la respuesta del SII es un error del servidor: un código HTTP
+     * 5xx o un cuerpo que dice "Error 5xx". En ese caso el SII no procesó lo
+     * que se le envió.
+     *
+     * @param CurlHandle $curl Conexión con la que se hizo la solicitud.
+     * @param string $responseBody Cuerpo de la respuesta del SII.
+     */
+    private function isServerError(CurlHandle $curl, string $responseBody): bool
+    {
+        return curl_getinfo($curl, CURLINFO_RESPONSE_CODE) >= 500
+            || preg_match('/^Error 5\d\d$/', trim($responseBody)) === 1
+        ;
     }
 
     /**

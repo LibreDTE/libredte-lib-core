@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Core\Package\Billing\Component\Integration\Worker\SiiRtc\Job;
 
+use CurlHandle;
 use Derafu\Array\ArrayReader;
 use Derafu\Backbone\Abstract\AbstractJob;
 use Derafu\Backbone\Attribute\Job;
@@ -35,6 +36,7 @@ use libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestI
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtc\SendAecException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Exception\SiiRtcException;
 use libredte\lib\Core\Package\Billing\Component\Integration\Support\Response\SiiRtc\SendAecResponse;
+use libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts;
 use UnexpectedValueException;
 
 /**
@@ -109,11 +111,11 @@ class SendAecJob extends AbstractJob implements JobInterface
             'archivo' => curl_file_create($filepath, 'application/xml', $filename),
         ];
 
-        // Resolver el valor de $retries.
-        $retries = $request->getRetries($retries);
+        // Resolver los intentos que se podrán realizar.
+        $attempts = SiiAttempts::fromRequest($request, $retries);
 
         // Realizar la solicitud al SII.
-        $xmlResponse = $this->uploadAec($request, $data, $retries);
+        $xmlResponse = $this->uploadAec($request, $data, $attempts);
 
         // Eliminar el archivo temporal.
         unlink($filepath);
@@ -190,14 +192,14 @@ class SendAecJob extends AbstractJob implements JobInterface
      *
      * @param SiiRequestInterface $request
      * @param array<string, mixed> $data Campos del formulario multipart, incluido el archivo.
-     * @param int $retries Número de reintentos.
+     * @param SiiAttempts $attempts Intentos que se realizarán como máximo.
      * @return array<string, mixed> Respuesta del SII decodificada como arreglo.
      * @throws SiiRtcException Si no se puede autenticar o si el HTTP falla.
      */
     private function uploadAec(
         SiiRequestInterface $request,
         array $data,
-        int $retries
+        SiiAttempts $attempts
     ): array {
         $url = $request->getEnvironment()->getUrl('/cgi_rtc/RTC/RTCAnotEnvio.cgi');
         $token = $this->siiLazyWorker->authenticate($request);
@@ -220,20 +222,32 @@ class SendAecJob extends AbstractJob implements JobInterface
         }
 
         $responseBody = null;
-        for ($i = 0; $i < $retries; $i++) {
+        foreach ($attempts as $timeout) {
+            $milliseconds = (int) ceil($timeout * 1000);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT_MS, $milliseconds);
+            curl_setopt($curl, CURLOPT_TIMEOUT_MS, $milliseconds);
+
             $responseBody = curl_exec($curl);
 
-            if ($responseBody && $responseBody !== 'Error 500') {
+            // Si se logró obtener una respuesta, y no es un error del servidor
+            // del SII (HTTP 5xx o "Error 5xx"), se rompe el ciclo.
+            if ($responseBody && !$this->isServerError($curl, (string) $responseBody)) {
                 break;
             }
 
-            // El reitento será con "exponential backoff", por lo que se
-            // hace una pausa de 0.5 * $retries segundos antes de volver a
-            // intentar llamar a la función del servicio web.
-            usleep(500000 * $retries);
+            // Si el SII no respondió a tiempo cuando el envío ya se había
+            // hecho, pudo haberlo recibido. Reintentar podría enviarlo
+            // duplicado, por lo que no se reintenta.
+            if (
+                $responseBody === false
+                && curl_errno($curl) === CURLE_OPERATION_TIMEDOUT
+                && curl_getinfo($curl, CURLINFO_SIZE_UPLOAD_T) > 0
+            ) {
+                break;
+            }
         }
 
-        if (!$responseBody || $responseBody === 'Error 500') {
+        if (!$responseBody || $this->isServerError($curl, (string) $responseBody)) {
             throw new SendAecException([
                 'Failed to send the AEC to the SII. {detail}',
                 'detail' => !$responseBody
@@ -259,6 +273,21 @@ class SendAecJob extends AbstractJob implements JobInterface
         }
 
         return $decoded;
+    }
+
+    /**
+     * Indica si la respuesta del SII es un error del servidor: un código HTTP
+     * 5xx o un cuerpo que dice "Error 5xx". En ese caso el SII no procesó lo
+     * que se le envió.
+     *
+     * @param CurlHandle $curl Conexión con la que se hizo la solicitud.
+     * @param string $responseBody Cuerpo de la respuesta del SII.
+     */
+    private function isServerError(CurlHandle $curl, string $responseBody): bool
+    {
+        return curl_getinfo($curl, CURLINFO_RESPONSE_CODE) >= 500
+            || preg_match('/^Error 5\d\d$/', trim($responseBody)) === 1
+        ;
     }
 
     /**
