@@ -110,6 +110,7 @@ class SiiDteWorker extends AbstractWorker implements SiiDteWorkerInterface
             ],
             'retries' => [
                 'description' => 'Cantidad máxima de intentos al enviar. Si no se indica, se usa `request.options.retries`.',
+                'example' => 3,
             ],
         ],
         results: [

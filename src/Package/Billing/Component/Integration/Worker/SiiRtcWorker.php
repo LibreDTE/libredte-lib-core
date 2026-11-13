@@ -108,6 +108,7 @@ class SiiRtcWorker extends AbstractWorker implements SiiRtcWorkerInterface
             ],
             'retries' => [
                 'description' => 'Cantidad máxima de intentos al enviar. Si no se indica, se usa `request.options.retries`.',
+                'example' => 3,
             ],
         ],
         results: [
