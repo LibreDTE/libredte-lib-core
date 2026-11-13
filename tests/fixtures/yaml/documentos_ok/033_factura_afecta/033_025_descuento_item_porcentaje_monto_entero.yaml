@@ -1,0 +1,50 @@
+# Factura con descuento de ítem solo en porcentaje. El SII no considera el
+# porcentaje: valida que PrcItem * QtyItem - DescuentoMonto sea MontoItem. Por
+# eso el DescuentoMonto debe quedar en el documento, como entero (el esquema lo
+# define como entero positivo) y el MontoItem debe ser coherente con él.
+Encabezado:
+  IdDoc:
+    TipoDTE: 33
+    Folio: 25
+  Emisor:
+    RUTEmisor: 76192083-9
+    RznSoc: SASCO SpA
+    GiroEmis: Tecnología, informática y telecomunicaciones
+    Acteco: 726000
+    DirOrigen: Santa Cruz
+    CmnaOrigen: Santa Cruz
+  Receptor:
+    RUTRecep: 60803000-K
+    RznSocRecep: Servicio de Impuestos Internos
+    GiroRecep: Gobierno
+    DirRecep: Santiago
+    CmnaRecep: Santiago
+Detalle:
+# 498 * 3906 = 1945188. El 7 % es 136163,16.
+- NmbItem: Pañuelo AFECTO
+  QtyItem: 498
+  PrcItem: 3906
+  DescuentoPct: 7
+# 433 * 2963 = 1282979. El 14 % es 179617,06.
+- NmbItem: ITEM 2 AFECTO
+  QtyItem: 433
+  PrcItem: 2963
+  DescuentoPct: 14
+
+# Esta sección no debe de ser considerada para un caso de ejemplo de emisión.
+Test:
+  ExpectedValues:
+    Detalle:
+      0:
+        DescuentoPct: 7
+        DescuentoMonto: 136163
+        MontoItem: 1809025
+      1:
+        DescuentoPct: 14
+        DescuentoMonto: 179617
+        MontoItem: 1103362
+    Encabezado:
+      Totales:
+        MntNeto: 2912387
+        IVA: 553354
+        MntTotal: 3465741

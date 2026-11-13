@@ -165,30 +165,55 @@ trait NormalizeDetalleTrait
                         $tpoMoneda
                     );
 
+                    $montoBase = $montoItem;
+
                     // Aplicar descuento. Si se indicó el monto se usa tal cual
-                    // (el usuario controla el valor exacto). Si solo se indicó
-                    // el porcentaje se aplica directamente sobre el monto del
-                    // ítem, sin redondear y sin agregar DescuentoMonto, porque
-                    // en el XML ese monto es un entero positivo y no puede
-                    // representar el porcentaje con decimales.
+                    // (el usuario controla el valor exacto y el porcentaje no
+                    // se considera). Si solo se indicó el porcentaje se aplica
+                    // directamente sobre el monto del ítem, sin redondear.
                     $descuentoMonto = $row->getAsNumber('DescuentoMonto');
+                    $descuentoPorPct = false;
                     if (!empty($descuentoMonto)) {
                         $montoItem -= $descuentoMonto;
                     } elseif (!empty($d['DescuentoPct'])) {
                         $montoItem -= $montoItem * $row->requireAsFloat('DescuentoPct') / 100;
+                        $descuentoPorPct = true;
                     }
+                    $montoConDescuento = Utils::round($montoItem, $tpoMoneda);
 
                     // Aplicar recargo, sobre el monto con el descuento aplicado.
                     // Mismo criterio que el descuento.
                     $recargoMonto = $row->getAsNumber('RecargoMonto');
+                    $recargoPorPct = false;
                     if (!empty($recargoMonto)) {
                         $montoItem += $recargoMonto;
                     } elseif (!empty($d['RecargoPct'])) {
                         $montoItem += $montoItem * $row->requireAsFloat('RecargoPct') / 100;
+                        $recargoPorPct = true;
                     }
 
                     // Aproximar monto del item.
-                    $d['MontoItem'] = Utils::round($montoItem, $tpoMoneda);
+                    $montoFinal = Utils::round($montoItem, $tpoMoneda);
+                    $d['MontoItem'] = $montoFinal;
+
+                    // Si el descuento o el recargo se indicó solo con el
+                    // porcentaje, el monto se obtiene como la diferencia entre
+                    // los montos ya aproximados. Así PrcItem * QtyItem -
+                    // DescuentoMonto + RecargoMonto es MontoItem, que es lo que
+                    // valida el SII (no considera los porcentajes). El monto
+                    // solo se agrega si es un entero positivo, que es lo que
+                    // admite el esquema; si no, no se agrega y el porcentaje
+                    // queda aplicado en MontoItem.
+                    if ($descuentoPorPct) {
+                        $d['DescuentoMonto'] = $this->getAmountFromDifference(
+                            $montoBase - $montoConDescuento
+                        );
+                    }
+                    if ($recargoPorPct) {
+                        $d['RecargoMonto'] = $this->getAmountFromDifference(
+                            $montoFinal - $montoConDescuento
+                        );
+                    }
                 }
             }
             // Si el monto del item es vacío se estandariza como "0".
@@ -245,5 +270,25 @@ trait NormalizeDetalleTrait
 
         // Actualizar los datos normalizados.
         $bag->setNormalizedData($writer->getReader()->toMap());
+    }
+
+    /**
+     * Entrega la diferencia como monto de descuento o recargo de un ítem.
+     *
+     * En el XML DescuentoMonto y RecargoMonto son enteros positivos, por lo que
+     * una diferencia de 0, con decimales o negativa no se puede representar y
+     * no se entrega monto.
+     *
+     * @param int|float $difference Diferencia entre dos montos del ítem.
+     * @return int|null Monto o `null` si la diferencia no es un entero positivo.
+     */
+    private function getAmountFromDifference(int|float $difference): ?int
+    {
+        $difference = round($difference, 4);
+
+        return ($difference >= 1 && $difference == floor($difference))
+            ? (int) $difference
+            : null
+        ;
     }
 }
