@@ -337,7 +337,9 @@ Datos de la conexión al SII.
 |---|---|
 | `certificate` | Obligatorio. Certificado digital con el que se autentica en el SII. Se acepta `certificate` y `privateKey` en PEM, `data` (archivo PKCS12 en base64) y `password`, o `cert` y `pkey`. |
 | `options.environment` | Ambiente del SII: `0` producción (valor por defecto) o `1` certificación (pruebas). |
-| `options.retries` | Cantidad máxima de intentos ante fallas de conexión, de `0` a `10`; por defecto `10`. Con `0` no se hace ningún intento. Con muchos intentos la espera crece de forma exponencial. |
+| `options.retries` | Cantidad máxima de intentos de cada llamada al SII, de `1` a `10`; por defecto `3`. Con muchos intentos la espera crece de forma exponencial. |
+| `options.timeout` | Segundos máximos de cada intento de una llamada al SII, de `10` a `60`; por defecto `20`. |
+| `options.max_duration` | Segundos máximos de una llamada al SII, sumando sus intentos y las pausas entre ellos, de `10` a `300`; por defecto `60`. La autenticación con el SII es una llamada aparte, con su propio tiempo. |
 | `options.verify_ssl` | Verifica el certificado SSL del SII; por defecto `true`. No se recomienda desactivarlo. |
 | `options.token` | Cómo se guarda el token de autenticación: `cache` (`memory` o `filesystem`; por defecto `memory`), `key` y `ttl` (segundos que se conserva; por defecto `2700`). |
 MD</span>
@@ -376,7 +378,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -413,7 +415,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -450,7 +452,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -487,7 +489,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -529,7 +531,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -594,7 +596,7 @@ MD</span>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
     </aside>
 
@@ -715,7 +717,7 @@ MD, &#039;example&#039; =&gt; [&#039;track_id&#039; =&gt; 1234567890, &#039;stat
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">220</span>
 
     </aside>
 
@@ -845,7 +847,7 @@ MD, &#039;example&#039; =&gt; [&#039;assigned&#039; =&gt; false, &#039;status&#0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">299</span>
+    <span class="phpdocumentor-element-found-in__line">301</span>
 
     </aside>
 
@@ -973,7 +975,7 @@ MD, &#039;example&#039; =&gt; [&#039;assigned&#039; =&gt; false, &#039;status&#0
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php"><a href="files/src-package-billing-component-integration-worker-siirtcworker.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtcWorker.php">SiiRtcWorker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 

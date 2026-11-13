@@ -10136,6 +10136,16 @@ Search.appendIndex(
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020reintentos\u0020que\u0020se\u0020deben\u0020realizar\u0020al\u0020hacer\u0020una\nconsulta\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getRetries"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetTimeout\u0028\u0029",
+            "name": "getTimeout",
+            "summary": "Entrega\u0020el\u0020tiempo\u0020m\u00E1ximo,\u0020en\u0020segundos,\u0020que\u0020puede\u0020tardar\u0020cada\u0020intento\u0020de\nuna\u0020llamada\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getTimeout"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetMaxDuration\u0028\u0029",
+            "name": "getMaxDuration",
+            "summary": "Entrega\u0020el\u0020tiempo\u0020m\u00E1ximo\u0020total,\u0020en\u0020segundos,\u0020que\u0020puede\u0020tardar\u0020una\nllamada\u0020al\u0020SII,\u0020considerando\u0020todos\u0020sus\u0020intentos\u0020y\u0020las\u0020pausas\u0020entre\nellos.\u0020Una\u0020operaci\u00F3n\u0020que\u0020hace\u0020varias\u0020llamadas\u0020tiene\u0020este\u0020tiempo\u0020por\ncada\u0020una\u0020de\u0020ellas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_getMaxDuration"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AgetVerifySsl\u0028\u0029",
             "name": "getVerifySsl",
             "summary": "Indica\u0020si\u0020se\u0020est\u00E1\u0020o\u0020no\u0020verificando\u0020el\u0020SSL\u0020en\u0020las\u0020conexiones\u0020al\u0020SII.",
@@ -10165,6 +10175,51 @@ Search.appendIndex(
             "name": "requireCertificate",
             "summary": "Obtiene\u0020el\u0020certificado\u0020de\u0020la\u0020solicitud\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#method_requireCertificate"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ARETRIES_DEFAULT",
+            "name": "RETRIES_DEFAULT",
+            "summary": "Cantidad\u0020de\u0020intentos\u003A\u0020valor\u0020por\u0020defecto\u0020y\u0020rango\u0020permitido.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_RETRIES_DEFAULT"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ARETRIES_MIN",
+            "name": "RETRIES_MIN",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_RETRIES_MIN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ARETRIES_MAX",
+            "name": "RETRIES_MAX",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_RETRIES_MAX"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ATIMEOUT_DEFAULT",
+            "name": "TIMEOUT_DEFAULT",
+            "summary": "Segundos\u0020m\u00E1ximos\u0020de\u0020cada\u0020intento\u003A\u0020valor\u0020por\u0020defecto\u0020y\u0020rango\u0020permitido.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_TIMEOUT_DEFAULT"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ATIMEOUT_MIN",
+            "name": "TIMEOUT_MIN",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_TIMEOUT_MIN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003ATIMEOUT_MAX",
+            "name": "TIMEOUT_MAX",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_TIMEOUT_MAX"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AMAX_DURATION_DEFAULT",
+            "name": "MAX_DURATION_DEFAULT",
+            "summary": "Segundos\u0020m\u00E1ximos\u0020de\u0020toda\u0020la\u0020operaci\u00F3n\u003A\u0020valor\u0020por\u0020defecto\u0020y\u0020rango\npermitido.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_MAX_DURATION_DEFAULT"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AMAX_DURATION_MIN",
+            "name": "MAX_DURATION_MIN",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_MAX_DURATION_MIN"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiRequestInterface\u003A\u003AMAX_DURATION_MAX",
+            "name": "MAX_DURATION_MAX",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html#constant_MAX_DURATION_MAX"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Contract\\SiiResponseInterface",
             "name": "SiiResponseInterface",
@@ -11216,6 +11271,66 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-Response-SiiRtc-SendAecResponse.html#property_trackId"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts",
+            "name": "SiiAttempts",
+            "summary": "Intentos\u0020de\u0020una\u0020operaci\u00F3n\u0020contra\u0020el\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#method___construct"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003AfromRequest\u0028\u0029",
+            "name": "fromRequest",
+            "summary": "Crea\u0020los\u0020intentos\u0020de\u0020una\u0020operaci\u00F3n\u0020a\u0020partir\u0020de\u0020la\u0020solicitud\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#method_fromRequest"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003AgetIterator\u0028\u0029",
+            "name": "getIterator",
+            "summary": "Entrega\u0020los\u0020segundos\u0020m\u00E1ximos\u0020de\u0020cada\u0020intento,\u0020uno\u0020por\u0020iteraci\u00F3n.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#method_getIterator"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003Acount\u0028\u0029",
+            "name": "count",
+            "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020intentos\u0020realizados.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#method_count"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003AgetRemaining\u0028\u0029",
+            "name": "getRemaining",
+            "summary": "Segundos\u0020que\u0020quedan\u0020de\u0020la\u0020duraci\u00F3n\u0020total.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#method_getRemaining"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003AMIN_ATTEMPT_TIME",
+            "name": "MIN_ATTEMPT_TIME",
+            "summary": "Segundos\u0020m\u00EDnimos\u0020que\u0020debe\u0020quedar\u0020para\u0020que\u0020se\u0020haga\u0020otro\u0020intento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#constant_MIN_ATTEMPT_TIME"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003ABASE_PAUSE",
+            "name": "BASE_PAUSE",
+            "summary": "Segundos\u0020de\u0020la\u0020pausa\u0020antes\u0020del\u0020segundo\u0020intento.\u0020En\u0020los\u0020siguientes\u0020se\nduplica.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#constant_BASE_PAUSE"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003A\u0024attempts",
+            "name": "attempts",
+            "summary": "Intentos\u0020realizados\u0020hasta\u0020ahora.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#property_attempts"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003A\u0024retries",
+            "name": "retries",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#property_retries"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003A\u0024timeout",
+            "name": "timeout",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#property_timeout"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiAttempts\u003A\u003A\u0024maxDuration",
+            "name": "maxDuration",
+            "summary": "",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html#property_maxDuration"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest",
             "name": "SiiRequest",
             "summary": "Clase\u0020para\u0020administrar\u0020la\u0020solicitud\u0020al\u0020sitio\u0020web\u0020del\u0020SII\u0020de\u0020Chile.",
@@ -11240,6 +11355,16 @@ Search.appendIndex(
             "name": "getRetries",
             "summary": "Entrega\u0020la\u0020cantidad\u0020de\u0020reintentos\u0020que\u0020se\u0020deben\u0020realizar\u0020al\u0020hacer\u0020una\nconsulta\u0020a\u0020un\u0020servicio\u0020web\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getRetries"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetTimeout\u0028\u0029",
+            "name": "getTimeout",
+            "summary": "Entrega\u0020el\u0020tiempo\u0020m\u00E1ximo,\u0020en\u0020segundos,\u0020que\u0020puede\u0020tardar\u0020cada\u0020intento\u0020de\nuna\u0020llamada\u0020al\u0020SII.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTimeout"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetMaxDuration\u0028\u0029",
+            "name": "getMaxDuration",
+            "summary": "Entrega\u0020el\u0020tiempo\u0020m\u00E1ximo\u0020total,\u0020en\u0020segundos,\u0020que\u0020puede\u0020tardar\u0020una\nllamada\u0020al\u0020SII,\u0020considerando\u0020todos\u0020sus\u0020intentos\u0020y\u0020las\u0020pausas\u0020entre\nellos.\u0020Una\u0020operaci\u00F3n\u0020que\u0020hace\u0020varias\u0020llamadas\u0020tiene\u0020este\u0020tiempo\u0020por\ncada\u0020una\u0020de\u0020ellas.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getMaxDuration"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Support\\SiiRequest\u003A\u003AgetVerifySsl\u0028\u0029",
             "name": "getVerifySsl",
@@ -11415,6 +11540,11 @@ Search.appendIndex(
             "name": "uploadXml",
             "summary": "Sube\u0020el\u0020archivo\u0020XML\u0020al\u0020SII\u0020y\u0020retorna\u0020la\u0020respuesta\u0020de\u0020este.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDte\\Job\\SendXmlDocumentJob\u003A\u003AisServerError\u0028\u0029",
+            "name": "isServerError",
+            "summary": "Indica\u0020si\u0020la\u0020respuesta\u0020del\u0020SII\u0020es\u0020un\u0020error\u0020del\u0020servidor\u003A\u0020un\u0020c\u00F3digo\u0020HTTP\n5xx\u0020o\u0020un\u0020cuerpo\u0020que\u0020dice\u0020\u0022Error\u00205xx\u0022.\u0020En\u0020ese\u0020caso\u0020el\u0020SII\u0020no\u0020proces\u00F3\u0020lo\nque\u0020se\u0020le\u0020envi\u00F3.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_isServerError"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiDte\\Job\\SendXmlDocumentJob\u003A\u003AcreateXmlFile\u0028\u0029",
             "name": "createXmlFile",
@@ -11965,6 +12095,11 @@ Search.appendIndex(
             "name": "uploadAec",
             "summary": "Sube\u0020el\u0020AEC\u0020al\u0020endpoint\u0020del\u0020RTC\u0020del\u0020SII.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AisServerError\u0028\u0029",
+            "name": "isServerError",
+            "summary": "Indica\u0020si\u0020la\u0020respuesta\u0020del\u0020SII\u0020es\u0020un\u0020error\u0020del\u0020servidor\u003A\u0020un\u0020c\u00F3digo\u0020HTTP\n5xx\u0020o\u0020un\u0020cuerpo\u0020que\u0020dice\u0020\u0022Error\u00205xx\u0022.\u0020En\u0020ese\u0020caso\u0020el\u0020SII\u0020no\u0020proces\u00F3\u0020lo\nque\u0020se\u0020le\u0020envi\u00F3.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_isServerError"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Integration\\Worker\\SiiRtc\\Job\\SendAecJob\u003A\u003AcreateXmlFile\u0028\u0029",
             "name": "createXmlFile",

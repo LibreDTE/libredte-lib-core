@@ -158,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
@@ -268,6 +268,15 @@
 <dd>Obtiene un nombre único para el archivo del XML que se desea crear.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_isServerError">isServerError()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si la respuesta del SII es un error del servidor: un código HTTP
+5xx o un cuerpo que dice &quot;Error 5xx&quot;. En ese caso el SII no procesó lo
+que se le envió.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml">uploadXml()</a>
     <span>
                                 &nbsp;: <abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr>    </span>
@@ -311,7 +320,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -348,7 +357,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -390,7 +399,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -441,7 +450,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -554,7 +563,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">315</span>
+    <span class="phpdocumentor-element-found-in__line">343</span>
 
     </aside>
 
@@ -619,7 +628,7 @@ su mimetype.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">357</span>
+    <span class="phpdocumentor-element-found-in__line">385</span>
 
     </aside>
 
@@ -666,6 +675,68 @@ su mimetype.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_isServerError">
+        isServerError()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_isServerError" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">328</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si la respuesta del SII es un error del servidor: un código HTTP
+5xx o un cuerpo que dice &quot;Error 5xx&quot;. En ese caso el SII no procesó lo
+que se le envió.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">isServerError</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\CurlHandle">CurlHandle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$curl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseBody</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$curl</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\CurlHandle">CurlHandle</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Conexión con la que se hizo la solicitud.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseBody</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Cuerpo de la respuesta del SII.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_uploadXml">
         uploadXml()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml" class="headerlink"><i class="fas fa-link"></i></a>
@@ -674,7 +745,7 @@ su mimetype.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">242</span>
 
     </aside>
 
@@ -682,7 +753,7 @@ su mimetype.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">uploadXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retries</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">uploadXml</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts">SiiAttempts</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attempts</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Derafu\Xml\Contract\XmlDocumentInterface">XmlDocumentInterface</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -716,11 +787,13 @@ incluyendo el archivo XML que se subirá.</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$retries</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$attempts</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts">SiiAttempts</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Intentos que se realizarán como máximo.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -769,7 +842,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php"><a href="files/src-package-billing-component-integration-worker-siidte-job-sendxmldocumentjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiDte/Job/SendXmlDocumentJob.php">SendXmlDocumentJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">136</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
@@ -861,6 +934,7 @@ el XML al SII o si hubo un problema (error) al enviar el XML al SII.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_send">send()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_createXmlFile">createXmlFile()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_getXmlFilePath">getXmlFilePath()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_isServerError">isServerError()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_uploadXml">uploadXml()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiDte-Job-SendXmlDocumentJob.html#method_validateUploadXmlResponse">validateUploadXmlResponse()</a></li>
                                     </ul>

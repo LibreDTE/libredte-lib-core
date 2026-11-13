@@ -156,7 +156,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -198,7 +198,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#property_optionsSchema">$optionsSchema</a>
     <span>
-                        &nbsp;: array{environment: array<string,mixed>, retries: array<string,mixed>, verify_ssl: array<string,mixed>, token: array<string,mixed>}            </span>
+                        &nbsp;: array{environment: array<string,mixed>, retries: array<string,mixed>, timeout: array<string,mixed>, max_duration: array<string,mixed>, verify_ssl: array<string,mixed>, token: array<string,mixed>}            </span>
 </dt>
 <dd>Reglas de esquema de las opciones de la solicitud al SII.</dd>
 
@@ -240,6 +240,16 @@
 Servicio de Impuestos Internos.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getMaxDuration">getMaxDuration()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el tiempo máximo total, en segundos, que puede tardar una
+llamada al SII, considerando todos sus intentos y las pausas entre
+ellos. Una operación que hace varias llamadas tiene este tiempo por
+cada una de ellas.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getOptionsSchema">getOptionsSchema()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
@@ -253,6 +263,14 @@ Servicio de Impuestos Internos.</dd>
 </dt>
 <dd>Entrega la cantidad de reintentos que se deben realizar al hacer una
 consulta a un servicio web del SII.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTimeout">getTimeout()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Entrega el tiempo máximo, en segundos, que puede tardar cada intento de
+una llamada al SII.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenDefaultCache">getTokenDefaultCache()</a>
@@ -328,7 +346,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -337,7 +355,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">array{environment: array<string,mixed>, retries: array<string,mixed>, verify_ssl: array<string,mixed>, token: array<string,mixed>}</span>
+            <span class="phpdocumentor-signature__type">array{environment: array<string,mixed>, retries: array<string,mixed>, timeout: array<string,mixed>, max_duration: array<string,mixed>, verify_ssl: array<string,mixed>, token: array<string,mixed>}</span>
     <span class="phpdocumentor-signature__name">$optionsSchema</span>
      = <span class="phpdocumentor-signature__default-value">[
     // Por defecto la conexión es a los servidores de producción del SII.
@@ -346,7 +364,15 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     // hacer una solicitud al SII. El reintento se hará utilizando
     // &quot;exponential backoff&quot;, por lo que un número muy grande implicará un
     // tiempo de ejecución alto.
-    &#039;retries&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; 10, &#039;normalizer&#039; =&gt; null],
+    &#039;retries&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; self::RETRIES_DEFAULT, &#039;normalizer&#039; =&gt; null],
+    // Tiempo máximo, en segundos, que puede tardar cada intento de una
+    // llamada al SII.
+    &#039;timeout&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; self::TIMEOUT_DEFAULT, &#039;normalizer&#039; =&gt; null],
+    // Tiempo máximo total, en segundos, de una llamada al SII, considerando
+    // todos sus intentos y las pausas entre ellos. Una operación que hace
+    // varias llamadas (por ejemplo, autenticar y luego consultar) tiene
+    // este tiempo por cada una de ellas.
+    &#039;max_duration&#039; =&gt; [&#039;types&#039; =&gt; &#039;int&#039;, &#039;default&#039; =&gt; self::MAX_DURATION_DEFAULT, &#039;normalizer&#039; =&gt; null],
     // Especifica si se debe o no realizar la validación del certificado
     // SSL del SII. A veces, en pruebas sobre todo, ha resultado útil poder
     // desactivar esta validación. Sin embargo, se desaconseja hacerlo por
@@ -396,7 +422,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">124</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
@@ -439,7 +465,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -493,7 +519,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">269</span>
 
     </aside>
 
@@ -532,7 +558,7 @@ digital asignado y el ambiente del SII de la solicitud.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
     </aside>
 
@@ -568,6 +594,52 @@ Servicio de Impuestos Internos.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getMaxDuration">
+        getMaxDuration()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getMaxDuration" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">210</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el tiempo máximo total, en segundos, que puede tardar una
+llamada al SII, considerando todos sus intentos y las pausas entre
+ellos. Una operación que hace varias llamadas tiene este tiempo por
+cada una de ellas.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getMaxDuration</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Segundos totales, de 10 a 300.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getOptionsSchema">
         getOptionsSchema()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getOptionsSchema" class="headerlink"><i class="fas fa-link"></i></a>
@@ -576,7 +648,7 @@ Servicio de Impuestos Internos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">151</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
@@ -615,7 +687,7 @@ Servicio de Impuestos Internos.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -648,6 +720,54 @@ consulta a un servicio web del SII.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Cantidad de intentos, de 1 a 10.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTimeout">
+        getTimeout()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTimeout" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">202</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Entrega el tiempo máximo, en segundos, que puede tardar cada intento de
+una llamada al SII.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTimeout</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Segundos por intento, de 10 a 60.</p>
+</section>
+
             </section>
 
 </article>
@@ -665,7 +785,7 @@ consulta a un servicio web del SII.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">188</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 
     </aside>
 
@@ -709,7 +829,7 @@ consulta al SII en la gestión de tokens.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">196</span>
+    <span class="phpdocumentor-element-found-in__line">234</span>
 
     </aside>
 
@@ -749,7 +869,7 @@ digital asignado y el ambiente del SII de la solicitud.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 
     </aside>
 
@@ -788,7 +908,7 @@ digital asignado y el ambiente del SII de la solicitud.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">180</span>
+    <span class="phpdocumentor-element-found-in__line">218</span>
 
     </aside>
 
@@ -831,7 +951,7 @@ digital asignado y el ambiente del SII de la solicitud.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">239</span>
+    <span class="phpdocumentor-element-found-in__line">277</span>
 
     </aside>
 
@@ -870,7 +990,7 @@ digital asignado y el ambiente del SII de la solicitud.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Support/SiiRequest.php"><a href="files/src-package-billing-component-integration-support-siirequest.html"><abbr title="src/Package/Billing/Component/Integration/Support/SiiRequest.php">SiiRequest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">249</span>
+    <span class="phpdocumentor-element-found-in__line">287</span>
 
     </aside>
 
@@ -940,8 +1060,10 @@ digital asignado y el ambiente del SII de la solicitud.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getCertificate">getCertificate()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getEnvironment">getEnvironment()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getMaxDuration">getMaxDuration()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getOptionsSchema">getOptionsSchema()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getRetries">getRetries()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTimeout">getTimeout()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenDefaultCache">getTokenDefaultCache()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenKey">getTokenKey()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiRequest.html#method_getTokenTtl">getTokenTtl()</a></li>

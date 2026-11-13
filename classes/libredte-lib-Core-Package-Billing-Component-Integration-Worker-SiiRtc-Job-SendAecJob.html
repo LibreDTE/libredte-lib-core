@@ -158,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -269,6 +269,15 @@
 <dd>Crea un archivo temporal con el XML del AEC.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_isServerError">isServerError()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Indica si la respuesta del SII es un error del servidor: un código HTTP
+5xx o un cuerpo que dice &quot;Error 5xx&quot;. En ese caso el SII no procesó lo
+que se le envió.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec">uploadAec()</a>
     <span>
                                 &nbsp;: array&lt;string, mixed&gt;    </span>
@@ -303,7 +312,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -350,7 +359,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -392,7 +401,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -436,7 +445,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -550,7 +559,7 @@ enviarlo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">270</span>
+    <span class="phpdocumentor-element-found-in__line">299</span>
 
     </aside>
 
@@ -597,6 +606,68 @@ enviarlo.</p>
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_isServerError">
+        isServerError()
+        <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_isServerError" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">286</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Indica si la respuesta del SII es un error del servidor: un código HTTP
+5xx o un cuerpo que dice &quot;Error 5xx&quot;. En ese caso el SII no procesó lo
+que se le envió.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">isServerError</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\CurlHandle">CurlHandle</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$curl</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$responseBody</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$curl</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\CurlHandle">CurlHandle</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Conexión con la que se hizo la solicitud.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$responseBody</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Cuerpo de la respuesta del SII.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_uploadAec">
         uploadAec()
         <a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec" class="headerlink"><i class="fas fa-link"></i></a>
@@ -605,7 +676,7 @@ enviarlo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 
     </aside>
 
@@ -613,7 +684,7 @@ enviarlo.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">uploadAec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$retries</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">uploadAec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Contract-SiiRequestInterface.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Contract\SiiRequestInterface">SiiRequestInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">array&lt;string, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts">SiiAttempts</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attempts</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -644,11 +715,11 @@ enviarlo.</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$retries</span>
-                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$attempts</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Support-SiiAttempts.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Support\SiiAttempts">SiiAttempts</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Número de reintentos.</p>
+                    <section class="phpdocumentor-description"><p>Intentos que se realizarán como máximo.</p>
 </section>
 
             </dd>
@@ -698,7 +769,7 @@ enviarlo.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php"><a href="files/src-package-billing-component-integration-worker-siirtc-job-sendaecjob.html"><abbr title="src/Package/Billing/Component/Integration/Worker/SiiRtc/Job/SendAecJob.php">SendAecJob.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">143</span>
+    <span class="phpdocumentor-element-found-in__line">145</span>
 
     </aside>
 
@@ -796,6 +867,7 @@ enviarlo.</p>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_send">send()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_createXmlFile">createXmlFile()</a></li>
+                                            <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_isServerError">isServerError()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_uploadAec">uploadAec()</a></li>
                                             <li class=""><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Worker-SiiRtc-Job-SendAecJob.html#method_validateResponse">validateResponse()</a></li>
                                     </ul>
