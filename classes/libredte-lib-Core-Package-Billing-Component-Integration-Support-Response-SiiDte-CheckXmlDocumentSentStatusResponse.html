@@ -904,7 +904,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -917,8 +917,8 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>Retorna <code class="prettyprint">null</code> cuando el SII aún no ha procesado definitivamente el envío
-(estados intermedios) o el estado no se reconoce.</p>
+        <section class="phpdocumentor-description"><p>Los estados intermedios del SII (envío recibido y aún en proceso) se
+devuelven como <code class="prettyprint">EstadoEnvioSii::ENVIADO</code>.</p>
 </section>
 
     
@@ -929,6 +929,11 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/libredte-lib-Core-Package-Billing-Component-Integration-Enum-EstadoEnvioSii.html"><abbr title="\libredte\lib\Core\Package\Billing\Component\Integration\Enum\EstadoEnvioSii">EstadoEnvioSii</abbr></a>|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p><code class="prettyprint">null</code> solo cuando el código de estado
+entregado por el SII no es reconocido.</p>
+</section>
+
             </section>
 
 </article>
@@ -1034,7 +1039,7 @@ cabeceras <code class="prettyprint">SII:RESPUESTA.SII:RESP_HDR</code> esperadas.
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
@@ -1438,7 +1443,7 @@ formato ISO.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
@@ -1536,7 +1541,7 @@ formato ISO.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">155</span>
 
     </aside>
 
@@ -1579,7 +1584,7 @@ formato ISO.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php"><a href="files/src-package-billing-component-integration-trait-reviewssentstatustrait.html"><abbr title="src/Package/Billing/Component/Integration/Trait/ReviewsSentStatusTrait.php">ReviewsSentStatusTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 

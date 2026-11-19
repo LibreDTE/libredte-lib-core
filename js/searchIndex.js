@@ -2336,6 +2336,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getDocumentData"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireDocumentData\u0028\u0029",
+            "name": "requireDocumentData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE\u0020o\u0020falla\u0020si\u0020la\u0020bolsa\u0020no\u0020tiene\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireDocumentData"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AgetDocumentExtra\u0028\u0029",
             "name": "getDocumentExtra",
             "summary": "Obtiene\u0020los\u0020datos\u0020extras\u0020del\u0020documento.",
@@ -4915,6 +4920,11 @@ Search.appendIndex(
             "name": "getDocumentData",
             "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getDocumentData"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireDocumentData\u0028\u0029",
+            "name": "requireDocumentData",
+            "summary": "Obtiene\u0020los\u0020datos\u0020del\u0020documento\u0020agregando\u0020los\u0020datos\u0020espec\u00EDficos\u0020de\nLibreDTE\u0020o\u0020falla\u0020si\u0020la\u0020bolsa\u0020no\u0020tiene\u0020documento.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireDocumentData"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AgetDocumentExtra\u0028\u0029",
             "name": "getDocumentExtra",
