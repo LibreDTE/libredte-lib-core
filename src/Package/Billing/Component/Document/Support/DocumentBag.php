@@ -698,6 +698,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireReceptor(): ReceptorInterface
+    {
+        return $this->getReceptor() ?? throw $this->missing('receptor');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setTimbre(?array $timbre): static
     {
         $this->timbre = $timbre;

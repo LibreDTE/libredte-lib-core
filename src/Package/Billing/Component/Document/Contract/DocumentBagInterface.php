@@ -393,6 +393,14 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getReceptor(): ?ReceptorInterface;
 
     /**
+     * Obtiene el receptor del documento o falla si no está asignado.
+     *
+     * @return ReceptorInterface
+     * @throws DocumentException Si la bolsa no lo tiene asignado.
+     */
+    public function requireReceptor(): ReceptorInterface;
+
+    /**
      * Asigna el timbre del documento.
      *
      * Este es el nodo TED del documento.

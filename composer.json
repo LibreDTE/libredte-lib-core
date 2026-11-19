@@ -79,7 +79,7 @@
         "phpcs-fix": "vendor/bin/php-cs-fixer fix -v --config=php-cs-fixer.php",
         "phpcs": "vendor/bin/php-cs-fixer fix -v --dry-run --diff --config=php-cs-fixer.php",
         "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1G",
-        "phpstan-export": "vendor/bin/phpstan analyse --configuration=phpstan.neon --level 9 --generate-baseline"
+        "phpstan-export": "vendor/bin/phpstan analyse --configuration=phpstan.neon --level 10 --generate-baseline"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
