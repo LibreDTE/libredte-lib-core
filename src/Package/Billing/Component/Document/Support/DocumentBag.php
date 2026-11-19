@@ -814,6 +814,14 @@ class DocumentBag implements DocumentBagInterface
     /**
      * {@inheritDoc}
      */
+    public function requireDocumentData(): array
+    {
+        return $this->getDocumentData() ?? throw $this->missing('document');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDocumentExtra(): ?array
     {
         if (!isset($this->document)) {

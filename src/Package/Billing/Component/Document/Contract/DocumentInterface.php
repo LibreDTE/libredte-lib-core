@@ -184,8 +184,9 @@ interface DocumentInterface extends EntityInterface, JsonSerializable
      *
      * El monto estará en la moneda del documento.
      *
-     * En documentos exentos el monto será entregado como `float`, en otros
-     * tipos de documentos será entregado como `int`.
+     * En documentos de exportación el monto puede tener decimales y será
+     * entregado como `float`, en otros tipos de documentos será entregado
+     * como `int`.
      *
      * @return int|float Monto total del documento.
      */

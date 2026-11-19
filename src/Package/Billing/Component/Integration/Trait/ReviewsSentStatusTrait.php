@@ -94,10 +94,11 @@ trait ReviewsSentStatusTrait
     /**
      * Devuelve el estado del envío normalizado como enum.
      *
-     * Retorna `null` cuando el SII aún no ha procesado definitivamente el envío
-     * (estados intermedios) o el estado no se reconoce.
+     * Los estados intermedios del SII (envío recibido y aún en proceso) se
+     * devuelven como `EstadoEnvioSii::ENVIADO`.
      *
-     * @return EstadoEnvioSii|null
+     * @return EstadoEnvioSii|null `null` solo cuando el código de estado
+     * entregado por el SII no es reconocido.
      */
     public function getEstadoEnvioSii(): ?EstadoEnvioSii
     {

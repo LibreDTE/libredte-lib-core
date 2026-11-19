@@ -78,8 +78,11 @@ interface SiiCheckXmlDocumentSentStatusResponseInterface extends JsonSerializabl
     /**
      * Devuelve el estado del envío normalizado como enum.
      *
-     * @return EstadoEnvioSii|null `null` cuando el SII aún no ha procesado
-     * definitivamente el envío o el estado no se reconoce.
+     * Los estados intermedios del SII (envío recibido y aún en proceso) se
+     * devuelven como `EstadoEnvioSii::ENVIADO`.
+     *
+     * @return EstadoEnvioSii|null `null` solo cuando el código de estado
+     * entregado por el SII no es reconocido.
      */
     public function getEstadoEnvioSii(): ?EstadoEnvioSii;
 

@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace libredte\lib\Tests\Unit\Package\Billing\Component\Document\Support;
 
+use libredte\lib\Core\Package\Billing\Component\Document\Contract\DocumentInterface;
 use libredte\lib\Core\Package\Billing\Component\Document\Exception\DocumentException;
 use libredte\lib\Core\Package\Billing\Component\Document\Support\DocumentBag;
 use libredte\lib\Core\Package\Billing\Component\TradingParties\Entity\Contribuyente;
@@ -47,6 +48,30 @@ class DocumentBagRequireTest extends TestCase
         $bag->setReceptor($receptor);
 
         $this->assertSame($receptor, $bag->requireReceptor());
+    }
+
+    public function testTheDocumentDataIsRequired(): void
+    {
+        $data = ['Encabezado' => ['IdDoc' => ['Folio' => 1]]];
+        $document = $this->createStub(DocumentInterface::class);
+        $document->method('getData')->willReturn($data);
+
+        $bag = new DocumentBag();
+        $bag->setDocument($document);
+
+        $this->assertSame($data, $bag->requireDocumentData());
+    }
+
+    public function testWithoutDocumentTheDocumentDataThrows(): void
+    {
+        $bag = new DocumentBag();
+
+        $this->assertNull($bag->getDocumentData());
+
+        $this->expectException(DocumentException::class);
+        $this->expectExceptionMessage('The document bag does not have document.');
+
+        $bag->requireDocumentData();
     }
 
     public function testWithoutReceptorItThrows(): void

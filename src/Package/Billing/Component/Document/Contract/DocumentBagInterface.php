@@ -478,6 +478,16 @@ interface DocumentBagInterface extends OptionsAwareInterface, JsonSerializable
     public function getDocumentData(): ?array;
 
     /**
+     * Obtiene los datos del documento agregando los datos específicos de
+     * LibreDTE o falla si la bolsa no tiene documento.
+     *
+     * @return array<string, mixed>
+     * @throws DocumentException Si la bolsa no tiene documento.
+     * @see getDocumentData()
+     */
+    public function requireDocumentData(): array;
+
+    /**
      * Obtiene los datos extras del documento.
      *
      * Esto entregará todos los datos extras del documento menos aquellos que
