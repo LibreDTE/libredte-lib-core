@@ -2296,6 +2296,11 @@ Search.appendIndex(
             "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_getReceptor"
         },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003ArequireReceptor\u0028\u0029",
+            "name": "requireReceptor",
+            "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Contract-DocumentBagInterface.html#method_requireReceptor"
+        },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Contract\\DocumentBagInterface\u003A\u003AsetTimbre\u0028\u0029",
             "name": "setTimbre",
             "summary": "Asigna\u0020el\u0020timbre\u0020del\u0020documento.",
@@ -4870,6 +4875,11 @@ Search.appendIndex(
             "name": "getReceptor",
             "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020documento.",
             "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_getReceptor"
+        },                {
+            "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003ArequireReceptor\u0028\u0029",
+            "name": "requireReceptor",
+            "summary": "Obtiene\u0020el\u0020receptor\u0020del\u0020documento\u0020o\u0020falla\u0020si\u0020no\u0020est\u00E1\u0020asignado.",
+            "url": "classes/libredte-lib-Core-Package-Billing-Component-Document-Support-DocumentBag.html#method_requireReceptor"
         },                {
             "fqsen": "\\libredte\\lib\\Core\\Package\\Billing\\Component\\Document\\Support\\DocumentBag\u003A\u003AsetTimbre\u0028\u0029",
             "name": "setTimbre",
